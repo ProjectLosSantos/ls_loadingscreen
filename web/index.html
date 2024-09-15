@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.16.0/cdn/themes/light.css" />
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.16.0/cdn/shoelace-autoloader.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        .boxShadow {
+            box-shadow: 0 0px 10px 2px rgba(2, 132, 199, 0.6)
+        }
+        .dropShadow {
+            filter: drop-shadow(0 0 30px rgba(2, 132, 199, 1.0));
+            animation: blinkShadow 3s infinite ease-in-out;
+        }
+
+        video {
+            position: absolute;
+            width: 0px;
+            height: 0px;
+        }
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200%;
+            height: 200%;
+            background: url(background.png) !important;
+
+            background-position: center;
+            background-repeat: repeat;
+            opacity: 0.2; 
+            animation: moveBackground 120s linear infinite;
+        }
+
+        @keyframes moveBackground {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        @keyframes blinkShadow {
+            0% {
+                filter: drop-shadow(0 0 30px rgba(2, 132, 199, 1.0));
+            }
+            50% {
+                filter: drop-shadow(0 0 10px rgba(2, 132, 199, 0.5));
+            }
+            100% {
+                filter: drop-shadow(0 0 30px rgba(2, 132, 199, 1.0));
+            }
+        }
+    </style>
+</head>
+<body class="bg-[#242424]  h-screen w-screen flex flex-col overflow-hidden">
+    
+    <div class="flex flex-col items-center pt-[8%]">
+        <p class="text-center text-5xl font-bold dropShadow">
+            <span class="text-white">Your</span><br>
+            <span class="text-sky-600">Server Name</span>
+        </p>
+    </div>
+    <div class="absolute bottom-0 left-0 p-4 w-full">
+        <p class="text-white text-lg pb-2 animate-pulse flex items-center"><sl-spinner class="text-2xl mr-2" style="--indicator-color: white; --track-color: transparent; --track-width: 3px"></sl-spinner><span id="text">Loading In Progress...</span></p>
+        <div class="w-full bg-[#242424] rounded h-[10px] flex items-center" >
+                <div id="loadingbar" class="w-[25%] h-[10px] bg-sky-600 rounded boxShadow transition-all"></div>
+        </div>
+    </div>
+
+    <audio id="background-music"
+        src="music.mp3"
+        type="audio/mp3"
+        autoplay="true"
+        looped="true"
+    ></audio>
+
+    
+    <script src="script.js"></script>
+</body>
+</html>
